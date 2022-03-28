@@ -1,5 +1,6 @@
 const app = require("express").Router()
 const fs = require("fs");
+const { request } = require("https");
 const util = require("util");
 
 const readFileAsync = util.promisify(fs.readFile);
@@ -30,12 +31,13 @@ app.post("/api/notes", function(req,res) {
 
 //API DELETE
 app.delete("/api/notes/:id", function(req, res) {
-  const idToDelete = parseInt(req, params.id);
+  const idToDelete = req.params.id;
+  console.log("ID",idToDelete)
   readFileAsync("./db/db.json", "utf8").then(function(data) {
     const notes = [].concat(JSON.parse(data));
     const newNotesData = []
     for (let i = 0; i < notes.length; i++) {
-      if(idToData !== notes[i].id) {
+      if(idToDelete != notes[i].id) {
         newNotesData.push(notes[i])
       }
     }
@@ -43,7 +45,7 @@ app.delete("/api/notes/:id", function(req, res) {
   }).then(function(notes) {
     writeFileAsync("./db/db.json", JSON.stringify(notes))
     console.log("delete", notes);
-    res.send('saved!');
+    res.json(notes);
   })
 })
 
