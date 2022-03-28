@@ -15,7 +15,7 @@ app.get("/api/notes", function(req, res) {
 })
 
 //API POST
-app.post("api/notes", function(req,res) {
+app.post("/api/notes", function(req,res) {
   const note = req.body;
   readFileAsync("./db/db.json", "utf8").then(function(data) {
     note.id = notes.length + 1
@@ -29,7 +29,7 @@ app.post("api/notes", function(req,res) {
 });
 
 //API DELETE
-app.delete("api/notes/:id", function(req, res) {
+app.delete("/api/notes/:id", function(req, res) {
   const idToDelete = parseInt(req, params.id);
   readFileAsync("./db/db.json", "utf8").then(function(data) {
     const notes = [].concat(JSON.parse(data));
@@ -47,4 +47,4 @@ app.delete("api/notes/:id", function(req, res) {
   })
 })
 
-module.export = app;
+module.exports = app;
