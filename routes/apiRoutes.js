@@ -1,6 +1,5 @@
 const app = require("express").Router()
 const fs = require("fs");
-const { request } = require("https");
 const util = require("util");
 
 const readFileAsync = util.promisify(fs.readFile);
