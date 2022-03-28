@@ -10,7 +10,7 @@ This application was developed to create, save and delete notes.
 
 ## Image
 
-![Note Taker App!](/Users/brunomarcenaro/UNC/note-taker/Screen Shot 2022-03-28 at 13.35.09.png)
+![Note Taker App!](/image/Screen%20Shot%202022-03-28%20at%2013.35.09.png)
 
 ## Website
 
