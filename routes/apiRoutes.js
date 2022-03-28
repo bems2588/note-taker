@@ -1,4 +1,4 @@
-const express = require("express");
+const app = require("express").Router()
 const fs = require("fs");
 const util = require("util");
 
@@ -9,6 +9,7 @@ const writeFileAsync = util.promisify(fs.writeFile);
 app.get("/api/notes", function(req, res) {
   readFileAsync("./db/db.json", "utf8").then(function(data) {
     notes = [].concat(JSON.parse(data))
+    console.log("get", notes);
     res.json(notes);
   })
 })
@@ -22,6 +23,7 @@ app.post("api/notes", function(req,res) {
     return notes
   }).then(function(notes) {
     writeFileAsync("./db/db.json", JSON.stringify(notes))
+    console.log("post", notes);
     res.json(note);
   })
 });
@@ -40,6 +42,7 @@ app.delete("api/notes/:id", function(req, res) {
     return newNotesData
   }).then(function(notes) {
     writeFileAsync("./db/db.json", JSON.stringify(notes))
+    console.log("delete", notes);
     res.send('saved!');
   })
 })
